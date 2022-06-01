@@ -58,15 +58,19 @@ class TodoJournal:
         data = self._parse()
         name = data["name"]
         todos = data["todos"]
+        try:
+            todos.remove(todos[index])
 
-        todos.remove(todos[index])
+            new_data = {
+                "name": name,
+                "todos": todos,
+            }
 
-        new_data = {
-            "name": name,
-            "todos": todos,
-        }
-
-        self._update(new_data)
+            self._update(new_data)
+        except ValueError as error:
+            print(f"{error}")
+            print(f"Не существует такой индекса: {index}")
+            sys.exit(2)
 
     def _update(self, new_data):
         """
