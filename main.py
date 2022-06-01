@@ -16,8 +16,7 @@ def create_todo_list(path_todo, todo_name):
 
 
 def add_todo(path_todo, new_todo):
-    with open(path_todo, 'r') as todo_file:
-        data = json.load(todo_file)
+    data = parse_todo(path_todo)
 
     name = data["name"]
     todos = data["todos"]
@@ -33,8 +32,8 @@ def add_todo(path_todo, new_todo):
 
 
 def remove_todo(path_todo, index):
-    with open(path_todo, 'r') as todo_file:
-        data = json.load(todo_file)
+    data = parse_todo(path_todo)
+
     name = data["name"]
     todos = data["todos"]
 
@@ -58,6 +57,11 @@ def update_todo(path_todo, new_data):
             ensure_ascii=False,
         )
 
+
+def parse_todo(path_todo):
+    with open(path_todo, 'r') as todo_file:
+        data = json.load(todo_file)
+    return data
 
 
 if __name__ == '__main__':
