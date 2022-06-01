@@ -20,14 +20,19 @@ class TodoJournal:
          todos[] - список , внутри которого будут наши to_do записки
         :return: None
         """
-        with open(self.path_todo, "w", encoding='utf-8') as todo_file:
-            json.dump(
-                {"name": self.name, "todos": []},
-                todo_file,
-                sort_keys=True,
-                indent=4,
-                ensure_ascii=False,
-            )
+        try:
+            with open(self.path_todo, "w", encoding='utf-8') as todo_file:
+                json.dump(
+                    {"name": self.name, "todos": []},
+                    todo_file,
+                    sort_keys=True,
+                    indent=4,
+                    ensure_ascii=False,
+                )
+        except FileExistsError as error:
+            print(f"{error}")
+            print(f"Не возможно создать файл(проверьте права): {self.path_todo}")
+            sys.exit(3)
 
     def add_entry(self, new_entry):
         """
@@ -41,6 +46,7 @@ class TodoJournal:
         todos = data["todos"]
 
         todos.append(new_entry)
+        # Надо подумать какое исключние сюда(todos вроде всегда существует)
 
         new_data = {
             "name": name,
