@@ -74,14 +74,19 @@ class TodoJournal:
         :param new_data: Информация которую мы хотим записать
         :return: None
         """
-        with open(self.path_todo, "w", encoding='utf-8') as todo_file:
-            json.dump(
-                new_data,
-                todo_file,
-                sort_keys=True,
-                indent=4,
-                ensure_ascii=False,
-            )
+        try:
+            with open(self.path_todo, "w", encoding='utf-8') as todo_file:
+                json.dump(
+                    new_data,
+                    todo_file,
+                    sort_keys=True,
+                    indent=4,
+                    ensure_ascii=False,
+                )
+        except FileNotFoundError as error:
+            print(f"{error}")
+            print(f"Не существует такой тудушки: {self.path_todo}")
+            sys.exit(1)
 
     def _parse(self):
         """
