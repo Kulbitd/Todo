@@ -2,73 +2,73 @@ import json
 import sys
 
 
+class TodoJournal:
+    def __init__(self, path_todo, name):
+        self.path_todo = path_todo
+        self.name = name
+
+    def create(self):
+        with open(self.path_todo, "w", encoding='utf-8') as todo_file:
+            json.dump(
+                {"name": self.name, "todos": []},
+                todo_file,
+                sort_keys=True,
+                indent=4,
+                ensure_ascii=False,
+            )
+
+    def add_entry(self, new_entry):
+        data = self._parse()
+
+        name = data["name"]
+        todos = data["todos"]
+
+        todos.append(new_entry)
+
+        new_data = {
+            "name": name,
+            "todos": todos,
+        }
+
+        self._update(new_data)
+
+    def remove_entry(self, index):
+        data = self._parse()
+        name = data["name"]
+        todos = data["todos"]
+
+        todos.remove(todos[index])
+
+        new_data = {
+            "name": name,
+            "todos": todos,
+        }
+
+        self._update(new_data)
+
+    def _update(self, new_data):
+        with open(self.path_todo, "w", encoding='utf-8') as todo_file:
+            json.dump(
+                new_data,
+                todo_file,
+                sort_keys=True,
+                indent=4,
+                ensure_ascii=False,
+            )
+
+    def _parse(self):
+        try:
+            with open(self.path_todo, 'r') as todo_file:
+                data = json.load(todo_file)
+            return data
+        except FileNotFoundError as error:
+            print(f"{error}")
+            print(f"Не существует такой тудушки: {self.path_todo}")
+            sys.exit(1)
+
+
 def main():
     pass
-
-
-def create_todo_list(path_todo, todo_name):
-    with open(path_todo, "w") as todo_file:
-        json.dump(
-            {"name": todo_name},
-            todo_file,
-            sort_keys=True,
-            indent=4,
-        )
-
-
-def add_todo(path_todo, new_todo):
-    data = parse_todo(path_todo)
-
-    name = data["name"]
-    todos = data["todos"]
-
-    todos.append(new_todo)
-
-    new_data = {
-        "name": name,
-        "todos": todos,
-    }
-
-    update_todo(path_todo, new_data)
-
-
-def remove_todo(path_todo, index):
-    data = parse_todo(path_todo)
-
-    name = data["name"]
-    todos = data["todos"]
-
-    todos.remove(todos[index])
-
-    new_data = {
-        "name": name,
-        "todos": todos,
-    }
-
-    update_todo(path_todo, new_data)
-
-
-def update_todo(path_todo, new_data):
-    with open(path_todo, "w", encoding='utf-8') as todo_file:
-        json.dump(
-            new_data,
-            todo_file,
-            sort_keys=True,
-            indent=4,
-            ensure_ascii=False,
-        )
-
-
-def parse_todo(path_todo):
-    try:
-        with open(path_todo, 'r') as todo_file:
-            data = json.load(todo_file)
-        return data
-    except FileNotFoundError as e:
-        print(f"{e}")
-        # или свое исключение
-        print(f"Не существует такой тудушки: {path_todo}")
-        sys.exit(1)
 
 
 if __name__ == '__main__':
