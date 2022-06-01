@@ -29,14 +29,7 @@ def add_todo(path_todo, new_todo):
         "todos": todos,
     }
 
-    with open(path_todo, "w", encoding='utf-8') as todo_file:
-        json.dump(
-            new_data,
-            todo_file,
-            sort_keys=True,
-            indent=4,
-            ensure_ascii=False,
-        )
+    update_todo(path_todo, new_data)
 
 
 def remove_todo(path_todo, index):
@@ -52,6 +45,10 @@ def remove_todo(path_todo, index):
         "todos": todos,
     }
 
+    update_todo(path_todo, new_data)
+
+
+def update_todo(path_todo, new_data):
     with open(path_todo, "w", encoding='utf-8') as todo_file:
         json.dump(
             new_data,
@@ -60,6 +57,7 @@ def remove_todo(path_todo, index):
             indent=4,
             ensure_ascii=False,
         )
+
 
 
 if __name__ == '__main__':
