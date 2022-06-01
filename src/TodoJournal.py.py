@@ -117,12 +117,13 @@ class TodoJournal:
         self.entries += 1
         return self.entries
 
+
 def main():
     """
     Вызов и создание нашего журанала(по идее)
     :return: None
     """
-    todo = TodoJournal("./test")
+    todo = TodoJournal("../test")
     todo.add_entry("Новая запись 0")
     todo.add_entry("Новая запись 1")
 
