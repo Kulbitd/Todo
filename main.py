@@ -42,17 +42,13 @@ class TodoJournal:
         :param new_entry: Содержание заметки
         :return: None
         """
-        data = self._parse()
 
-        name = data["name"]
-        todos = data["todos"]
-
-        todos.append(new_entry)
+        self.entries.append(new_entry)
         # Надо подумать какое исключние сюда(todos вроде всегда существует)
 
         new_data = {
-            "name": name,
-            "todos": todos,
+            "name": self.name,
+            "todos": self.entries,
         }
 
         self._update(new_data)
@@ -63,15 +59,12 @@ class TodoJournal:
         :param index: Индекс заметки, которую хотим удалить
         :return: None
         """
-        data = self._parse()
-        name = data["name"]
-        todos = data["todos"]
         try:
-            todos.remove(todos[index])
+            self.entries.remove(self.entries[index])
 
             new_data = {
-                "name": name,
-                "todos": todos,
+                "name": self.name,
+                "todos": self.entries,
             }
 
             self._update(new_data)
@@ -120,7 +113,6 @@ def main():
     Вызов и создание нашего журанала(по идее)
     :return: None
     """
-    pass
 
 
 if __name__ == '__main__':
