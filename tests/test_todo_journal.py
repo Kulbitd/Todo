@@ -3,7 +3,7 @@ from src.TodoJournal import TodoJournal
 
 def test_init():
     """Проверка корректности инициализации TodoJournal"""
-    todo = TodoJournal("data/test_todo")
+    todo = TodoJournal("./test")
     entries = todo.entries
     name = todo.name
     expected_entries = []

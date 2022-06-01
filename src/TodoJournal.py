@@ -123,9 +123,7 @@ def main():
     Вызов и создание нашего журанала(по идее)
     :return: None
     """
-    todo = TodoJournal("../test")
-    todo.add_entry("Новая запись 0")
-    todo.add_entry("Новая запись 1")
+    TodoJournal.create("./test", "test_todo")
 
 
 if __name__ == '__main__':
