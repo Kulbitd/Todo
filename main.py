@@ -1,4 +1,5 @@
 import json
+import sys
 
 
 def main():
@@ -59,9 +60,15 @@ def update_todo(path_todo, new_data):
 
 
 def parse_todo(path_todo):
-    with open(path_todo, 'r') as todo_file:
-        data = json.load(todo_file)
-    return data
+    try:
+        with open(path_todo, 'r') as todo_file:
+            data = json.load(todo_file)
+        return data
+    except FileNotFoundError as e:
+        print(f"{e}")
+        # или свое исключение
+        print(f"Не существует такой тудушки: {path_todo}")
+        sys.exit(1)
 
 
 if __name__ == '__main__':
