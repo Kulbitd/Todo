@@ -14,16 +14,17 @@ class TodoJournal:
         self.path_todo = path_todo
         self.name = name
 
-    def create(self):
+    @staticmethod
+    def create(filename, name):
         """
-        Функия создающая файл , в виде json, name - имя файла ,
-         todos[] - список , внутри которого будут наши to_do записки
+        Функия создающая файл , в виде json, filename - имя файла ,
+         name - имя тудушки
         :return: None
         """
         try:
-            with open(self.path_todo, "w", encoding='utf-8') as todo_file:
+            with open(filename, "w", encoding='utf-8') as todo_file:
                 json.dump(
-                    {"name": self.name, "todos": []},
+                    {"name": name, "todos": []},
                     todo_file,
                     sort_keys=True,
                     indent=4,
@@ -31,7 +32,7 @@ class TodoJournal:
                 )
         except FileExistsError as error:
             print(f"{error}")
-            print(f"Не возможно создать файл(проверьте права): {self.path_todo}")
+            print(f"Не возможно создать файл(проверьте права): {filename}")
             sys.exit(3)
 
     def add_entry(self, new_entry):
