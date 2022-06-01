@@ -113,6 +113,9 @@ class TodoJournal:
     def __iter__(self):
         return iter(self.entries)
 
+    def __next__(self):
+        self.entries += 1
+        return self.entries
 
 def main():
     """
