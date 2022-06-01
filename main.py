@@ -10,9 +10,10 @@ class TodoJournal:
     Класс в котором определяем методы для работы с туду такие как удаление, удаление
     """
 
-    def __init__(self, path_todo, name):
+    def __init__(self, path_todo):
         self.path_todo = path_todo
-        self.name = name
+        self.name = self._parse()["name"]
+        self.entries = self._parse()["todos"]
 
     @staticmethod
     def create(filename, name):
