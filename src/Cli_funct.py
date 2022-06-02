@@ -1,5 +1,7 @@
 import argparse
 
+from src.TodoJournal import TodoJournal
+
 
 def parse_args(args):
     parser = argparse.ArgumentParser()  # Создание парсера
@@ -30,4 +32,7 @@ def parse_args(args):
 
 
 def run(args):
-    pass
+    todo = TodoJournal("../tests/data/test_todo")
+    if args.text:
+        raw_text = ''.join(args.text)
+        todo.add_entry(raw_text)
