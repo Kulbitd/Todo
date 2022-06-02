@@ -116,15 +116,3 @@ class TodoJournal:
     def __next__(self):
         self.entries += 1
         return self.entries
-
-
-def main():
-    """
-    Вызов и создание нашего журанала(по идее)
-    :return: None
-    """
-    TodoJournal.create("./test", "test_todo")
-
-
-if __name__ == '__main__':
-    main()
