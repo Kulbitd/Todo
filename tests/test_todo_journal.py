@@ -88,3 +88,21 @@ def test_remove_entry(todo_object_with_with_3_entries, todo_json_after_remove_se
 def test_parse():
     with pytest.raises(SystemExit):
         todo_jrnl = TodoJournal("./data/ggg")
+
+# Я написал исключение,но оно не проходит
+# def test_remove(tmpdir):
+#    todo_filename = "test"
+#    todos = tmpdir.join(todo_filename)
+#    TodoJournal.create(todos, "test")
+#    todo_jrnl = TodoJournal(todos)
+#    todo_jrnl.add_entry("Сходить за молоком")
+#
+#    expected_todo = json.dumps(
+#        {
+#            "name": "test",
+#            "todos": ["Сходить за молоком"]
+#        },
+#        indent=4,
+#        ensure_ascii=False, )
+#    with pytest.raises(SystemExit):
+#        todo_jrnl.remove_entry(4)
