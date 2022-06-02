@@ -1,7 +1,7 @@
 import sys
 
-from args import parse_args
-from todo import run
+from src.arg import parse_args
+from src.todo import run
 
 
 def main():
@@ -15,3 +15,7 @@ def main():
     except Exception as e:
         print(e)
         return 1
+
+
+if __name__ == '__main__':
+    main()
