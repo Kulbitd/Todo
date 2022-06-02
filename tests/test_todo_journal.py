@@ -1,9 +1,10 @@
 from src.TodoJournal import TodoJournal
 
 
-def test_init():
+def test_init(tmpdir):
     """Проверка корректности инициализации TodoJournal"""
-    todo = TodoJournal("./test")
+    todo_filename = "test"
+    todo = TodoJournal(todo_filename)
     entries = todo.entries
     name = todo.name
     expected_entries = []
