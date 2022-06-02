@@ -83,3 +83,8 @@ def test_remove_entry(todo_object_with_with_3_entries, todo_json_after_remove_se
     todo_object_with_with_3_entries.remove_entry(1)
     expected_todo_json_after_remove_second_entry = todo_json_after_remove_second_entry
     assert expected_todo_json_after_remove_second_entry == todo_object_with_with_3_entries.path_todo.read()
+
+
+def test_parse():
+    with pytest.raises(SystemExit):
+        todo_jrnl = TodoJournal("./data/ggg")
