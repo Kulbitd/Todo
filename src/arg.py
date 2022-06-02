@@ -23,4 +23,14 @@ def parse_args(args):
         help="Удаляеть запись по индексу",
     )
 
+    path = parser.add_argument_group(
+        "Setting Path",
+        "Установить путь до тудушки",
+    )
+    path.add_argument(
+        "--path",
+        dest="path",
+        default="./TodoJournal",
+        help="Указываем, где будет находиться журнал",
+    )
     return parser.parse_intermixed_args(args)

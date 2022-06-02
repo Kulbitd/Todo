@@ -9,3 +9,6 @@ def run(args):
         todo.add_entry(raw_text)
     if args.delete:
         todo.remove_entry(int(args.delete))
+    if args.path:
+        with open("../config.config", "w") as file:
+            file.write(args.path)
