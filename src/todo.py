@@ -7,3 +7,5 @@ def run(args):
         todo.add_entry(args.text)
         raw_text = ''.join(args.text)
         todo.add_entry(raw_text)
+    if args.delete:
+        todo.remove_entry(int(args.delete))
