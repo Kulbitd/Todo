@@ -1,6 +1,6 @@
 import sys
 
-from Cli_funct import *
+from Cli_funct import parse_args, run
 
 
 def main():
