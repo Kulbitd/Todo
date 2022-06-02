@@ -2,14 +2,12 @@ import argparse
 
 
 def parse_args(args):
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(description="Это немного, но это честная работа ",
+                                     formatter_class=argparse.RawDescriptionHelpFormatter,
+                                     epilog="Это должно было помочь ")
     composing = parser.add_argument_group("Writing new todos",
                                           "чтобы добавить новую запись в туду лист необходимо выполнить Х")
-    composing.add_argument("text", metavar="", nargs="*",
-                           help="Добавление заметки в туду лист",
-                           epilog="Надеюсь это помогло",
-                           description="",
-                           formatter_class="")
+    composing.add_argument("text", metavar="", nargs="*", help="Добавление заметки в туду лист", )
     # metavar - изменяет отображение имени
     # аргумент ключевого слова nargs связывает разное количество аргументов
     # discription - краткое описание того, что делает команда
