@@ -107,6 +107,9 @@ class TodoJournal:
             print(f"Не существует такой тудушки: {self.path_todo}")
             sys.exit(1)
 
+    def prin(self, index):
+        print(self.entries[index])
+
     def __len__(self):
         return len(self.entries)
 
