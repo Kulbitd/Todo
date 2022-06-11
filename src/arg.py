@@ -9,7 +9,3 @@ def parse_args(text, index):
         return index
     if text:
         return text
-
-
-if __name__ == "__main__":
-    parse_args()
