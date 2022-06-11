@@ -6,7 +6,9 @@ import click
 @click.option("--delete", "-d", "index", type=str)
 def parse_args(text, index):
     if index:
-        pass
+        return index
+    if text:
+        return text
 
 
 if __name__ == "__main__":
