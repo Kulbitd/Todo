@@ -12,8 +12,9 @@ class TodoJournal:
 
     def __init__(self, path_todo):
         self.path_todo = path_todo
-        self.name = self._parse()["name"]
-        self.entries = self._parse()["todos"]
+        todo = self._parse()
+        self.name = todo["name"]
+        self.entries = todo["todos"]
 
     @staticmethod
     def create(filename, name):
@@ -37,13 +38,15 @@ class TodoJournal:
             sys.exit(3)
 
     def add_entry(self, new_entry):
+        print(self.entries)
         """
         Функция заполняющая наш список todos[] заметками
         :param new_entry: Содержание заметки
         :return: None
         """
-
+        print(self.entries)
         self.entries.append(new_entry)
+        print(self.entries)
         # Надо подумать какое исключние сюда(todos вроде всегда существует)
 
         new_data = {
@@ -108,6 +111,11 @@ class TodoJournal:
             sys.exit(1)
 
     def prin(self, index):
+        """
+        Выводит содержимое туду
+        :param index: Номер туду которую хотим вывести
+        :return: Содержимое туду
+        """
         print(self.entries[index])
 
     def __len__(self):
