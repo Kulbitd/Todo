@@ -12,5 +12,7 @@ def run(args):
         if answer == "yes" or answer == "y" or answer == "Yes" or answer == "Y":
             todo.remove_entry(int(args.delete))
             print("Запись удалена ")
-        if answer == "no" or answer == "n" or answer == "No" or answer == "N":
+        elif answer == "no" or answer == "n" or answer == "No" or answer == "N":
             return
+        else:
+            print("Некоректный ввод ")
