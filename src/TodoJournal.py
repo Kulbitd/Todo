@@ -2,7 +2,8 @@
 Создаем туду приложение
 """
 import json
-import sys
+from os.path import isfile
+from sys import exit
 
 
 class TodoJournal:
@@ -23,30 +24,31 @@ class TodoJournal:
          name - имя тудушки
         :return: None
         """
-        try:
-            with open(filename, "w", encoding='utf-8') as todo_file:
-                json.dump(
-                    {"name": name, "todos": []},
-                    todo_file,
-                    sort_keys=True,
-                    indent=4,
-                    ensure_ascii=False,
-                )
-        except FileExistsError as error:
-            print(f"{error}")
-            print(f"Не возможно создать файл(проверьте права): {filename}")
-            sys.exit(3)
+        if isfile(filename):
+            print("Данный файл уже существует")
+            exit(-1)
+        else:
+            try:
+                with open(filename, "w", encoding='utf-8') as todo_file:
+                    json.dump(
+                        {"name": name, "todos": []},
+                        todo_file,
+                        sort_keys=True,
+                        indent=4,
+                        ensure_ascii=False,
+                    )
+            except FileExistsError as error:
+                print(f"{error}")
+                print(f"Не возможно создать файл(проверьте права): {filename}")
+                exit(3)
 
     def add_entry(self, new_entry):
-        print(self.entries)
         """
         Функция заполняющая наш список todos[] заметками
         :param new_entry: Содержание заметки
         :return: None
         """
-        print(self.entries)
         self.entries.append(new_entry)
-        print(self.entries)
         # Надо подумать какое исключние сюда(todos вроде всегда существует)
 
         new_data = {
@@ -74,7 +76,7 @@ class TodoJournal:
         except ValueError as error:
             print(f"{error}")
             print(f"Не существует такой индекса: {index}")
-            sys.exit(2)
+            exit(2)
 
     def _update(self, new_data):
         """
@@ -94,7 +96,7 @@ class TodoJournal:
         except FileNotFoundError as error:
             print(f"{error}")
             print(f"Не существует такой тудушки: {self.path_todo}")
-            sys.exit(1)
+            exit(1)
 
     def _parse(self):
         """
@@ -108,7 +110,7 @@ class TodoJournal:
         except FileNotFoundError as error:
             print(f"{error}")
             print(f"Не существует такой тудушки: {self.path_todo}")
-            sys.exit(1)
+            exit(1)
 
     def prin(self, index):
         """
