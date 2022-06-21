@@ -28,4 +28,13 @@ def parse_args(args):
         help="Удаляеть запись по индексу",
     )
 
+    standalone = parser.add_argument_group(
+        "Enter path ",
+        "Указание пути для туду листа",
+    )
+    standalone.add_argument(
+        "--path",
+        help="Вводим путь до туду",
+    )
+
     return parser.parse_intermixed_args(args)
